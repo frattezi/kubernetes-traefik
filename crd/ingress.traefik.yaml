@@ -121,7 +121,7 @@ spec:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
-  name: traefik-ingress-controller
+  name: traefik-ingress
 
 rules:
   - apiGroups:
@@ -170,13 +170,13 @@ rules:
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
-  name: traefik-ingress-controller
+  name: traefik-ingress
 
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: traefik-ingress-controller
+  name: traefik-ingress
 subjects:
   - kind: ServiceAccount
-    name: traefik-ingress-controller
+    name: traefik-ingress
     namespace: defaul

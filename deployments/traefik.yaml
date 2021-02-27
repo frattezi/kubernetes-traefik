@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   namespace: default
-  name: traefik-ingress-controller
+  name: traefik-ingress
 
 ---
 kind: Deployment
@@ -23,7 +23,7 @@ spec:
       labels:
         app: traefik
     spec:
-      serviceAccountName: traefik-ingress-controller
+      serviceAccountName: traefik-ingress
       containers:
         - name: traefik
           image: traefik:v2.4

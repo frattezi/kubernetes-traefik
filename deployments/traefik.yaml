@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   namespace: default
-  name: traefik-ingress
+  name: traefik-ingress-controller
 
 ---
 kind: Deployment
@@ -23,7 +23,7 @@ spec:
       labels:
         app: traefik
     spec:
-      serviceAccountName: traefik-ingress
+      serviceAccountName: traefik-ingress-controller
       containers:
         - name: traefik
           image: traefik:v2.4
@@ -36,6 +36,9 @@ spec:
             - --certificatesresolvers.myresolver.acme.tlschallenge
             - --certificatesresolvers.myresolver.acme.email=pfrattezi@gmail.com
             - --certificatesresolvers.myresolver.acme.storage=acme.json
+            # Please note that this is the staging Let's Encrypt server.
+            # Once you get things working, you should remove that whole line altogether.
+            - --certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
           ports:
             - name: web
               containerPort: 8000
